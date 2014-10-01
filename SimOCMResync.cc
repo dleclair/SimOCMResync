@@ -4,6 +4,7 @@
 #include <time.h>
 #include <pthread.h>
 #include <iostream>
+#include <iomanip>
 
 
 using namespace std;
@@ -31,7 +32,7 @@ private:
         for (;;)
         {
             clock_gettime(CLOCK_REALTIME, &ts);
-            cout << ts.tv_sec << "." << ts.tv_nsec << ": in mainloop" << endl;
+            cout << ts.tv_sec % 100000 << "." << setfill('0') << setw(3) << ts.tv_nsec / 1000000 << ": in mainloop" << endl;
             usleep(500000);
         }
     }
